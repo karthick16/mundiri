@@ -1,0 +1,109 @@
+<div class="container" id="container">
+		 	 <div class="row top">
+                <div class="col-lg-2 col-md-8 col-sm-7 col-left">
+                    <div class="name"><a href="#/all">Mundiri</a></div>
+                </div>
+               
+            </div>
+
+<div class="row bottom">
+
+			<div class="col-lg-12 col-md-4 col-sm-5 col-right">
+				<div id="scroll-shadow"></div>
+
+				<h1 class="visible-xs section-header">Last work</h1>
+				<h1 class="visible-xs text-center spacer">___</h1>
+
+				
+				
+				<section class="row" id="Grid">
+				<div class="container">
+				<header>
+					<h1>Freader</h1>
+				</header>	
+				
+					<form ng-submit="searchProducts()" class="feedAddForm">
+					Search for Products :
+						<input type="text"  placeholder="search products here" ng-model="searchText" required>							
+						<button type="submit" class="btn btn-primary">Search Products</button>			
+					</form>
+					
+					<table>
+					  <thead>
+					  <tr>
+					    <th>Product Id</th>
+					    <th>Product key word</th>
+					    <th>Product Title</th>
+					    <th>Product URL</th>
+					    
+					   
+					  </tr>
+					  </thead>
+					  <tbody>
+					  <tr ng-repeat="product in products">
+					    <td>{{product._id}}</td>
+					    <td><span>{{product._source.product_annotation}}</span></td>
+					    <td><span>{{product._source.product_title}}</span></td>					    
+					    <td><a href="{{product._source.product_url}}" target="_blank">{{product._source.product_url}}</a></td>
+					   	<td><a ng-click="addProduct(product)"><i class="icon-plus-sign"></i></a></td>
+					  </tr>
+					  </tbody>
+					</table>	
+					
+					
+					<div>******************************* Add your content recommendation ************************</div>
+						<span>Content URL : </span><input data-ng-model="contentURL" type="text" required />
+						<span>Content Title : </span><input data-ng-model="contentTitle" type="text" required />
+
+					<div>
+					
+					<table>
+					  <thead>
+					  <tr>
+					    <th>Product Id</th>
+					    <th>Product URL</th>
+					    <th>Product Annotation</th>
+					  </tr>
+					  </thead>
+					  <tbody>
+					  <tr ng-repeat="item in items">
+					    <td>{{item.id}}</td>
+					    <td><span>{{item.product_url}}</span></td>
+					    <td><input type="text" ng-model="item.annotation"  required>		</td>
+					   	<td><a ng-click="removeItem($index)">remove</i></a></td>
+					   	
+					  </tr>
+					  </tbody>
+					</table>		
+					</div>
+					<div>
+						<button data-ng-click="saveContentRecommendation()">Save
+							Recommendation</button>
+					</div>
+				</div>
+				
+				<div><b>List of all the recommendations here</b></div>						
+					<table>
+					  <thead>
+					  <tr>					    
+					    <th>Content URL</th>
+					    <th>Content Title</th>
+					    <th>Action</th>
+					  </tr>
+					  </thead>
+					  <tbody>
+					  <tr ng-repeat="item in contentList">					    
+					    <td><span>{{item._source.contentURL}}</span></td>
+					    <td><span>{{item._source.contentTitle}}</span></td>						    
+					   	<td><a ng-click="removeContent(item)">remove</i></a></td>
+					   	<td><a href="#/editContent/{{item._id}}"><i class="icon-pencil"></i></a></td>
+					  </tr>
+					  </tbody>
+					</table>
+				</section>
+
+
+			</div>
+		</div>
+</div>	
+	

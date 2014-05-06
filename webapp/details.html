@@ -1,0 +1,85 @@
+ 
+        
+        
+            <div class="row top">
+                <div class="col-lg-8 col-md-8 col-sm-7 col-left">
+                    <div class="name"><a href="http://malosanu.fleuzi.com/index.html">Mundiri</a></div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-5 col-right">
+                    <nav>
+                        <ul class="list-inline" id="menu">
+                            <li>
+                                <a href="http://malosanu.fleuzi.com/index.html">Content Explorer</a>
+                            </li>
+                                                      
+                            <li class="last">
+                                <a href="http://malosanu.fleuzi.com/project-example.html#"><img class="social" src="./img/icon-facebook.png" alt="facebook"></a>
+                                <a href="http://malosanu.fleuzi.com/project-example.html#"><img class="social" src="./img/icon-twitter.png" alt="twitter"></a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <div class="row bottom">
+                <div class="col-lg-8 col-md-8 col-sm-7 col-left">
+                    <div>
+                        <section>
+                           <div style="position:absolute; left:77; top:77; width:600; height:600; clip:rect(0,381,381,0); background:#FFF;">
+							<span></span>{{content._source.contentURL}}
+							 <iframe src ="{{content._source.contentURL}}" width="950" height="700" marginwidth="0" marginheight="0" frameborder="no" 
+							 	scrolling="yes" style="border-width:2px; border-color:#333; background:#FFF; border-style:solid;">
+							 </iframe>
+
+							</div>                            
+                        </section>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-5 col-right">
+                    <div id="scroll-shadow"></div>
+                    
+                    <h1 class="visible-xs section-header">Last work</h1>
+                    <h1 class="visible-xs text-center spacer">___</h1>
+                    
+                    <!--work choice-->
+                    <div class="item-choice">
+                        <a href="#" class="filter active" data-filter="all">All</a>
+                        <a href="#" class="filter" data-filter="web-design">Articles</a>    
+                                            
+                        <hr>
+                    </div>
+                    
+                    <section class="row" id="Grid">                       
+                        
+                        <div class="col-lg-6 col-md-12 col-sm-12 col-xs-6 mix web-design mix_all" style="display: inline-block; opacity: 1;" data-ng-repeat="product in products">
+                            <div class="panel panel-default item">
+                                <div class="panel-heading">
+                                    <a href="./Project Example - Eldun Malosanu_files/Project Example - Eldun Malosanu.htm">
+                                        <img class="img-responsive item-img" src="images/projet-example-9.jpg" alt="Work 6">
+                                    </a>    
+                                </div>
+                                <div class="panel-body">
+                                    <a href="{{product._source.product_url}}" target="_blank"><h4 class="item-title">{{product._source.product_title}}</h4></a>
+                                    <p class="item-category"></p>
+                                    <p class="item-description">
+                                    	<span style="background-color: wheat">
+                                    	{{product._source.product_annotation}}
+                                    	</span>
+                                    </p>
+                                    <hr>
+                                    <p class="item-tags">
+                                    <a href="{{product._source.product_url}}" target="_blank"><b>
+                                    	Explore here                                   
+                                    </b>
+                                    </a>                                        
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <a class="btn btn-block scroll-top visible-xs">
+                        <img src="./Project Example - Eldun Malosanu_files/icon-chevron.png" alt="Scroll top">
+                    </a>
+                </div>
+            </div>                        
+       
+        

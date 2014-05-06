@@ -1,0 +1,68 @@
+<!-- home.html -->
+
+
+<div class="container" id="container">
+		 	 <div class="row top">
+                <div class="col-lg-2 col-md-8 col-sm-7 col-left">
+                    <div class="name"><a href="./Welcome To My Portfolio - Eldun Malosanu_files/Welcome To My Portfolio - Eldun Malosanu.htm">Mundiri</a></div>
+                </div>               
+            </div>
+            
+<div class="row bottom">
+
+			<div class="col-lg-12 col-md-4 col-sm-5 col-right">
+				<div id="scroll-shadow"></div>
+
+				<h1 class="visible-xs section-header">Last work</h1>
+				<h1 class="visible-xs text-center spacer">___</h1>
+
+			
+				
+				<section class="row" id="Grid">
+				
+					Add Recommendations to content here.
+
+						<div class="control-group">
+						<form ng-submit="searchProducts()" class="feedAddForm">
+						Search for Products :
+							<input type="text"  placeholder="search products here" ng-model="searchText" required>	
+							<input type="submit" value="Search Products" class="btn btn-primary btn-large btn-block">		
+						</form>
+
+					<div class="feeds">
+					<div class="feed" ng-repeat="product in products">
+						<b><a target="_blank" href="{{product._source.product_url}}">{{product._source.product_url}}</a></b>						
+						<div class="description">{{product._source.product_annotation}}</div>	
+						<div class="description">{{product._id}}</div>						
+					</div>
+					</div>
+					
+				<span>Add Content URL here </span>
+				<input data-ng-model="contentURL" type="text"/>
+
+
+				<div>
+			      <ul>
+			        <li data-ng-repeat="item in items">
+			          {{$index}} -------- >  {{item.id}} / {{item.annotation}}
+			          <button data-ng-click="removeItem($index)">Remove</button>
+			        </li>
+			      </ul>
+			      <input data-ng-model="newItem.id">
+				 <input data-ng-model="newItem.annotation">
+					<button data-ng-click="addItem(newItem)">Add</button>
+			    </div>
+			
+				<div>
+				<button data-ng-click="saveContentRecommendation()">Save Recommendation</button>
+				</div>
+				
+				
+				
+				</section>
+
+
+			</div>
+		</div>
+</div>	
+	

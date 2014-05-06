@@ -1,0 +1,66 @@
+<div class="container" id="container">
+		 	 <div class="row top">
+                <div class="col-lg-2 col-md-8 col-sm-7 col-left">
+                    <div class="name"><a href="#/all">Mundiri</a></div>
+                </div>
+               
+            </div>
+
+<div class="row bottom">
+
+			<div class="col-lg-12 col-md-4 col-sm-5 col-right">
+				<div id="scroll-shadow"></div>
+
+				<h1 class="visible-xs section-header">Last work</h1>
+				<h1 class="visible-xs text-center spacer">___</h1>
+
+				
+				
+				<section class="row" id="Grid">
+				<div class="container">
+				<header>
+					<h1>Freader</h1>
+				</header>	
+				
+					<form ng-submit="searchProducts()" class="feedAddForm">
+					Search for Products :
+						<input type="text"  placeholder="search products here" ng-model="searchText" required>							
+						<button type="submit" class="btn btn-primary">Search Products</button>			
+					</form>
+					
+					<table>
+					  <thead>
+					  <tr>
+					    <th>Project</th>
+					    <th>Description</th>
+					    <th><a ng-click="newProduct()"><i class="icon-plus-sign"></i></a></th>
+					  </tr>
+					  </thead>
+					  <tbody>
+					  <tr ng-repeat="product in products">
+					    <td><a href="{{product._source.product_url}}" target="_blank">{{product._source.product_url}}</a></td>
+					    <td><span>{{product._source.product_annotation}}</span></td>
+					    <td>
+					      <a href="#/editProducts/{{product._id}}"><i class="icon-pencil"></i></a>
+					    </td>
+					  </tr>
+					  </tbody>
+					</table>
+					<span ng-show="addProductSuccess">Product added Succesfully</span>
+					<form ng-show="showProductFlag" ng-submit="addProductRecommendation()">							
+						<span>Product Title : </span><input  type="text"  ng-model="product_title" placeholder="Product title"></br>
+						<span>Product URL : </span><input  type="text"  ng-model="product_url" placeholder="Product url"></br>
+						<span>Product Annotation/keyword : </span><input  type="textbox"  ng-model="product_annotation" placeholder="annotation"></br>
+						<span>Product Category : </span><input  type="text"  ng-model="product_cat" placeholder="Product Category"></br>
+						<span>Product Sub Category : </span><input  type="text"  ng-model="product_subcat" placeholder="Product Sub Category"></br>
+						<a href="#/addProducts" class="btn">Cancel</a>
+  						<button ng-click="save()" class="btn btn-primary">Save</button>												
+					</form>			
+			</div>
+				</section>
+
+
+			</div>
+		</div>
+</div>	
+	

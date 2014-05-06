@@ -1,0 +1,93 @@
+
+
+<!-- <div class="container">
+				<header>
+					<h1>Freader</h1>
+					<div class="actions">
+						<form ng-submit="addFeed()" class="feedAddForm">
+							<input class="feedAddInput" type="url" ng-class="{active: showNewFeed}" ng-model="newFeedUrl" required placeholder="Feed URL">
+							<span class="addError" ng-class="{active: addErrorText && showNewFeed}">{{addErrorText}}</span>
+						</form>
+						<span class="headerAction actionAdd" ng-class="{active: showNewFeed}" ng-click="(!showNewFeed || addFeed()) && (showNewFeed = true)">
+							<i class="icon-plus" ng-class="{'icon-spin': addFeedLoading}"></i>
+						</span
+						><span class="headerAction actionDisconnect" ng-click="disconnect()"><i class="icon-off"></i></span>
+						<div class="overlay" ng-click="showNewFeed = false" ng-class="{active: showNewFeed}"></div>
+					</div>
+				</header>
+
+				<div class="feeds">
+					<div class="feed" ng-repeat="feed in feeds">
+						<p class="title">{{feed.name}}</p>
+						<p class="description">{{feed.description}}</p>
+						<div class="articles" ng-class="{active: feed.showArticles}">
+							<p class="article" ng-repeat="article in feed.items"><a href="{{article.link}}" target="_blank">{{article.title}}</a></p>
+							
+						</div>
+						<span class="showArticlesButton" ng-click="feed.showArticles = !feed.showArticles"><i ng-class="{'icon-arrow-down': !feed.showArticles, 'icon-arrow-up': feed.showArticles}"></i></span>
+						<span class="deleteButton" ng-click="feed.deletePopup = true"><i class="icon-remove"></i></span>
+						<div class="overlay" ng-click="feed.deletePopup = false" ng-class="{active: feed.deletePopup}"></div>
+						<div class="deletePopup" ng-class="{active: feed.deletePopup}">
+							<p>Do you really want to delete this feed ?</p>
+							<a class="btn btn-danger btnDeletePopup" ng-click="deleteFeed(feed)">Yes</a><a class="btn btnDeletePopup" ng-click="feed.deletePopup = false">No</a>
+						</div>
+					</div>
+				</div>
+			</div> -->
+
+
+
+<div class="container" id="container">
+		 	 <div class="row top">
+                <div class="col-lg-2 col-md-8 col-sm-7 col-left">
+                    <div class="name"><a href="#/feeds">Mundiri</a></div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-5 col-right">
+                    <nav>
+                        <ul class="list-inline" id="menu">
+                            <li class="active">
+                                <a href="./Welcome To My Portfolio - Eldun Malosanu_files/Welcome To My Portfolio - Eldun Malosanu.htm">Trending</a>
+                            </li>
+                            <li>
+                                <a href="http://malosanu.fleuzi.com/blog.html">Latest</a>
+                            </li>                          
+                            <li class="last">
+                                <a href="http://malosanu.fleuzi.com/index.html#"><img class="social" src="images/icon-facebook.png" alt="facebook"></a>
+                                <a href="http://malosanu.fleuzi.com/index.html#"><img class="social" src="images/icon-twitter.png" alt="twitter"></a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+			
+			
+
+
+  
+<div class="row bottom">
+		<div class="col-lg-12 col-md-4 col-sm-5 col-right ">		
+			<section class="row js-masonry" id="container" data-masonry-options='{"itemSelector": ".masonryItem" }'>
+				<div class="col-lg-3 col-md-12 col-sm-12 col-xs-6 mix technology mix_all masonryItem" style="display: inline-block; opacity: 1;" 	data-ng-repeat="article in feedList">					
+						<div class="panel panel-default item">
+							<div class="panel-heading">
+								<a href="{{article._source.link}}" target="_blank">
+									<img class="img-responsive item-img" src="{{article._source.contentimage}}" alt="Work 1" >									
+								</a>
+							</div>
+							<div class="panel-body">								
+								<span></span> <a ng-click="openContent(article)" ><h4 class="item-title">{{article._source.title}}										
+										</h4></a>
+										<span></span>	
+								<hr>								
+								<p class="item-tags"></p>
+
+							</div>
+						</div>					
+				</div>
+			</section>
+		</div>				
+				</section>			
+		</div>
+		
+</div>	
+	

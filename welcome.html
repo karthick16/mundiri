@@ -1,0 +1,79 @@
+<!doctype html>
+<html ng-app="Freader">
+	<head>
+		<title>Freader</title>
+		<script type="text/javascript">connected = {{alreadyLogged}};</script> <!-- Actual connection state directly in the head, so we don't have to get it with an AJAX request -->
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular-resource.min.js"></script>
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1-rc1/jquery.js"></script>
+			
+		<script src="http://masonry.desandro.com/masonry.pkgd.js"></script>
+		<script src="http://imagesloaded.desandro.com/imagesloaded.pkgd.js"></script>
+		
+			
+		<script src="webapp.js"></script>
+		<link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
+		<link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+		 <style type="text/css">
+		.truncated {
+            //color: red;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            //white-space: nowrap;
+        }
+        
+        
+		</style>
+		
+		 <link rel="icon" type="image/png" href="http://malosanu.fleuzi.com/img/favicon.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!-- Bootstrap -->
+    <link href="http://malosanu.fleuzi.com/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="http://malosanu.fleuzi.com/css/style.css" rel="stylesheet" media="screen">
+
+		
+		<meta charset="utf-8">
+	</head>
+	<body class="page-project-example">
+				<!-- angular templating -->
+				<!-- this is where content will be injected -->
+				<div class="container" id="container" ng-view></div>
+	</body>
+	
+	
+
+<script type="text/ng-template" id="loginView">
+			<div class="container login-screen" id="loginView" ng-controller="loginCtrl">
+
+				<div class="login-icon">
+					<img src="images/icon.png" alt="Welcome to Freader">
+					<h4>Welcome to <small>Freader</small></h4>
+				</div>
+				<form ng-submit="action()" class="login-form" name="actionForm">
+					<p class="errorMsg">{{errorMsg}}</p>
+					<div class="control-group">
+						<input type="email" class="login-field" id="login-name" placeholder="Email" ng-model="email" required>
+						<label class="login-field-icon fui-user" for="login-name"></label>
+					</div>
+					<div class="control-group">
+						<input type="password" class="login-field" id="login-pass" placeholder="Password" ng-model="password" required>
+						<label class="login-field-icon fui-lock" for="login-pass"></label>
+					</div>
+					<input type="submit" value="{{text.action}}" ng-disabled="actionForm.$invalid" class="btn btn-primary btn-large btn-block">
+					<a ng-click="changeAction()" class="actionChange">{{text.changeAction}}</a>
+				</form>
+
+			</div>
+		</script>
+		
+		<script type="text/ng-template" id="feedsView"></script>
+		<script type="text/ng-template" id="adminView_product"></script>
+		<script type="text/ng-template" id="adminView_content_recommendation"></script>
+		
+
+
+	
+</html>
+
+
+

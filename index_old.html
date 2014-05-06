@@ -1,0 +1,172 @@
+<!doctype html>
+<html ng-app="Freader">
+	<head>
+		<title>Freader</title>
+		<script type="text/javascript">connected = {{alreadyLogged}};</script> <!-- Actual connection state directly in the head, so we don't have to get it with an AJAX request -->
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular-resource.min.js"></script>
+		
+		<script src="webapp.js"></script>
+		<link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
+		<link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+		<link rel="stylesheet" href="webapp.css">
+		<meta charset="utf-8">
+	</head>
+	<body ng-view>
+		<script type="text/ng-template" id="loginView">
+			<div class="container login-screen" id="loginView" ng-controller="loginCtrl">
+
+				<div class="login-icon">
+					<img src="images/icon.png" alt="Welcome to Freader">
+					<h4>Welcome to <small>Freader</small></h4>
+				</div>
+				<form ng-submit="action()" class="login-form" name="actionForm">
+					<p class="errorMsg">{{errorMsg}}</p>
+					<div class="control-group">
+						<input type="email" class="login-field" id="login-name" placeholder="Email" ng-model="email" required>
+						<label class="login-field-icon fui-user" for="login-name"></label>
+					</div>
+					<div class="control-group">
+						<input type="password" class="login-field" id="login-pass" placeholder="Password" ng-model="password" required>
+						<label class="login-field-icon fui-lock" for="login-pass"></label>
+					</div>
+					<input type="submit" value="{{text.action}}" ng-disabled="actionForm.$invalid" class="btn btn-primary btn-large btn-block">
+					<a ng-click="changeAction()" class="actionChange">{{text.changeAction}}</a>
+				</form>
+
+			</div>
+		</script>
+
+
+		<script type="text/ng-template" id="feedsView">
+			<div class="container">
+				<header>
+					<h1>Freader</h1>
+					<div class="actions">
+						<form ng-submit="addFeed()" class="feedAddForm">
+							<input class="feedAddInput" type="url" ng-class="{active: showNewFeed}" ng-model="newFeedUrl" required placeholder="Feed URL">
+							<span class="addError" ng-class="{active: addErrorText && showNewFeed}">{{addErrorText}}</span>
+						</form>
+						<span class="headerAction actionAdd" ng-class="{active: showNewFeed}" ng-click="(!showNewFeed || addFeed()) && (showNewFeed = true)">
+							<i class="icon-plus" ng-class="{'icon-spin': addFeedLoading}"></i>
+						</span
+						><span class="headerAction actionDisconnect" ng-click="disconnect()"><i class="icon-off"></i></span>
+						<div class="overlay" ng-click="showNewFeed = false" ng-class="{active: showNewFeed}"></div>
+					</div>
+				</header>
+
+				<div class="feeds">
+					<div class="feed" ng-repeat="feed in feeds">
+						<p class="title">{{feed.name}}</p>
+						<p class="description">{{feed.description}}</p>
+						<div class="articles" ng-class="{active: feed.showArticles}">
+							<p class="article" ng-repeat="article in feed.items"><a href="{{article.link}}" target="_blank">{{article.title}}</a></p>
+							
+						</div>
+						<span class="showArticlesButton" ng-click="feed.showArticles = !feed.showArticles"><i ng-class="{'icon-arrow-down': !feed.showArticles, 'icon-arrow-up': feed.showArticles}"></i></span>
+						<span class="deleteButton" ng-click="feed.deletePopup = true"><i class="icon-remove"></i></span>
+						<div class="overlay" ng-click="feed.deletePopup = false" ng-class="{active: feed.deletePopup}"></div>
+						<div class="deletePopup" ng-class="{active: feed.deletePopup}">
+							<p>Do you really want to delete this feed ?</p>
+							<a class="btn btn-danger btnDeletePopup" ng-click="deleteFeed(feed)">Yes</a><a class="btn btnDeletePopup" ng-click="feed.deletePopup = false">No</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</script>
+		
+		
+		<script type="text/ng-template" id="adminView_product">
+			<div class="container">
+				<header>
+					<h1>Freader</h1>
+				</header>
+				<div class="feeds">
+						<form ng-submit="addProductRecommendation()" class="feedAddForm">							
+							<span>Product Title : </span><input  type="text"  ng-model="product_title" placeholder="Product title"></br>
+							<span>Product URL : </span><input  type="text"  ng-model="product_url" placeholder="Product url"></br>
+							<span>Product Annotation/keyword : </span><input  type="textbox"  ng-model="product_annotation" placeholder="annotation"></br>
+							<span>Product Category : </span><input  type="text"  ng-model="product_cat" placeholder="Product Category"></br>
+							<span>Product Sub Category : </span><input  type="text"  ng-model="product_subcat" placeholder="Product Sub Category"></br>
+							
+							<input type="submit" value="Save Recommendation" class="btn btn-primary btn-large btn-block">
+							
+							
+						</form>
+					<div class="control-group">
+						<form ng-submit="searchProducts()" class="feedAddForm">
+						Search for Products :
+							<input type="text"  placeholder="search products here" ng-model="searchText" required>	
+							<input type="submit" value="Search Products" class="btn btn-primary btn-large btn-block">		
+						</form>
+							
+
+					<div class="feeds">
+					<div class="feed" ng-repeat="product in products">
+						<b><a target="_blank" href="{{product._source.product_url}}">{{product._source.product_url}}</a></b>						
+						<div class="description">{{product._source.product_annotation}}</div>						
+					</div>
+					</div>	
+				
+			
+					</div>
+				</div>
+			</div>
+		</script>
+		
+		
+		
+		<script type="text/ng-template" id="contentRecommendationView" ng-controller="welcomePageCtrl">
+				Add Recommendations to content here.
+
+						<div class="control-group">
+						<form ng-submit="searchProducts()" class="feedAddForm">
+						Search for Products :
+							<input type="text"  placeholder="search products here" ng-model="searchText" required>	
+							<input type="submit" value="Search Products" class="btn btn-primary btn-large btn-block">		
+						</form>
+
+						<div class="feeds">
+					<div class="feed" ng-repeat="product in products">
+						<b><a target="_blank" href="{{product._source.product_url}}">{{product._source.product_url}}</a></b>						
+						<div class="description">{{product._source.product_annotation}}</div>	
+						<div class="description">{{product._id}}</div>						
+					</div>
+					</div>
+
+
+			<span>Add Content URL here </span>
+			<input data-ng-model="contentURL" type="text"/>
+
+
+	<div>
+      <ul>
+        <li data-ng-repeat="item in items">
+          {{$index}} -------- >  {{item.id}} / {{item.annotation}}
+          <button data-ng-click="removeItem($index)">Remove</button>
+        </li>
+      </ul>
+      <input data-ng-model="newItem.id">
+	 <input data-ng-model="newItem.annotation">
+		<button data-ng-click="addItem(newItem)">Add</button>
+    </div>
+
+	<div>
+	<button data-ng-click="saveContentRecommendation()">Save Recommendation</button>
+	</div>
+				
+		</script>
+
+<script type="text/ng-template" id="allContents" ng-controller="allContentPageCtrl">
+<div>Latest Technology news</div>
+				
+					<div class="feed" data-ng-repeat="content in contentList">
+						{{content._source.contentURL}}
+						<br/><a target="_blank" href="{{content._source.contentURL}}">{{content._source.contentURL}}</a>
+					</div>
+					</div>
+</script>
+
+
+	</body>
+</html>

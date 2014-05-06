@@ -1,0 +1,153 @@
+ 
+        
+        
+            <div class="row top">
+                <div class="col-lg-8 col-md-8 col-sm-7 col-left">
+                    <div class="name"><a href="http://malosanu.fleuzi.com/index.html">Mundiri</a></div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-5 col-right">
+                    <nav>
+                        <ul class="list-inline" id="menu">
+                            <li>
+                                <a href="http://malosanu.fleuzi.com/index.html">Content Explorer</a>
+                            </li>
+                                                      
+                            <li class="last">
+                                <a href="http://malosanu.fleuzi.com/project-example.html#"><img class="social" src="images/icon-facebook.png" alt="facebook"></a>
+                                <a href="http://malosanu.fleuzi.com/project-example.html#"><img class="social" src="images/icon-twitter.png" alt="twitter"></a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+          <div class="row bottom">
+                <div class="col-lg-8 col-md-8 col-sm-7 col-left" style="overflow:hidden">
+                    <div>
+                            
+                           <section>
+                           
+                           <div style="position:absolute; left:0; top:77; width:100%; height:600; clip:rect(0,381,381,0); background:#FFF;">							
+							   <iframe src ="{{article._source.link}}" width="950" height="700" marginwidth="0" marginheight="0" frameborder="no" 
+							 	scrolling="yes" style="border-width:2px; border-color:#333; background:#FFF; border-style:solid;">
+							 </iframe> 
+							 
+						
+
+							</div>                            
+                        </section>
+                            
+                           
+                          
+                    </div>
+                </div>
+               <form ng-submit="searchProducts()" class="feedAddForm" ng-show="allowEdit">
+					Search for Products :
+						<input type="text"  placeholder="search products here" ng-model="searchText">							
+						<button type="submit" class="btn btn-primary" ng-click="searchProducts()">Search Products</button>			
+					</form>
+                <ng-switch on="allowEdit">                
+                <!-- For ADMIN users START -->
+                <div class="col-lg-4 col-md-4 col-sm-5 col-right" ng-switch-when="true">
+                    <div id="scroll-shadow"></div>
+                    <h1 class="visible-xs section-header" id="posts-list">Last articles</h1>
+                    <h1 class="visible-xs text-center spacer">___</h1>
+                    
+					
+					
+					<table>
+					  <thead>
+					  <tr>					    
+					    <th>Product key word</th>
+					    <th>Product Title</th>
+					    <th>Product URL</th>
+					  </tr>   
+					  </thead>
+					  <tbody>
+					  <tr ng-repeat="product in products">					    
+					    <td><span>{{product._source.product_annotation}}</span></td>
+					    <td><span>{{product._source.product_title}}</span></td>					    
+					    <td><a href="{{product._source.product_url}}" target="_blank">{{product._source.product_url}}</a></td>
+					   	<td><a ng-click="addProduct(product)"><i class="icon-plus-sign"></i></a></td>
+					  </tr>
+					  </tbody>
+					</table>	
+                    
+                    
+                    <section class="blog" >
+                    	<h4>Check the following products for some keywords from this article</h4>
+                        <!--article-->
+                        <div class="media" data-ng-repeat="product in article._source.annotatedProducts">
+                            <a class="pull-left" href="{{product._source.product_url}}" target="_blank">
+                            
+                                <!--article image-->
+                                <img class="media-object" src="images/article-min-{{$index+1}}.png" alt="miniature-article">
+                                
+                            </a>
+                            <div class="media-body">
+                            
+                                <!--article title-->
+                                <h4 class="media-heading"> <a href="{{product.product_url}}" target="_blank">{{product.product_title}}</a>
+                                
+                                <a ng-click="removeArticle($index)" class="icon-minus-sign"></i></a>
+                                </h4>
+                                
+                                <!--article category-->
+                                <p class="article-category">{{product.category}}</p>
+                                
+                                <!--article date-->
+                                <p class="article-date">28 April 2014</p>
+                                
+                                <!--article short description-->
+                                 Original Annotation : <span style="background-color: wheat">{{product.seed_annotation}}</span><br/>
+                                Article Related Annotation : <input type="text" ng-model="product.annotation"  required style="border-color:wheat">
+                                
+                            </div>
+                        </div>                      
+                    </section> 
+                     
+                    <button type="submit" class="btn btn-primary" data-ng-click="updateArticleRecommendation()">Update</button>	
+                    <button type="submit" class="btn btn-primary">Cancel</button>
+                                        
+                    <a class="btn btn-block scroll-top visible-xs">
+                        <img src="./Blog - Eldun Malosanu_files/icon-chevron.png" alt="Scroll top">
+                    </a>
+                </div>
+                <!-- For ADMIN users END -->
+                <!-- For normal users START -->
+                <div class="col-lg-4 col-md-4 col-sm-5 col-right" ng-switch-when="false">
+                
+                    <div id="scroll-shadow"></div>
+                    <h1 class="visible-xs section-header" id="posts-list">Last articles</h1>
+                    <h1 class="visible-xs text-center spacer">___</h1>
+                    <section class="blog">                   
+                    	<h4>Check the following products for some keywords from this article</h4>
+                    	                    	 
+                        <!--article-->
+                        <div class="media" data-ng-repeat="product in article._source.annotatedProducts">
+                            <a class="pull-left" href="{{product._source.product_url}}" target="_blank">                            
+                                <!--article image-->
+                                <img class="media-object" src="images/article-min-{{$index+1}}.png" alt="miniature-article">                                
+                            </a>
+                            <div class="media-body">
+                                <!--article title-->
+                                <h4 class="media-heading"> <a href="{{product.product_url}}" target="_blank">{{product.product_title}}</a>
+                                
+                                </h4>
+                                <!--article category-->
+                                <p class="article-category">{{product.category}}</p>
+                                <!--article date-->
+                                <p class="article-date">28 April 2014</p>                                
+                                <!--article short description-->
+                                KeyWords: <span style="background-color: wheat" >{{product.annotation}}</span><br/>
+                            </div>
+                        </div>                      
+                    </section>                                        
+                    <a class="btn btn-block scroll-top visible-xs">
+                        <img src="./Blog - Eldun Malosanu_files/icon-chevron.png" alt="Scroll top">
+                    </a>
+                </div>
+                 
+                <!-- For Normal users END -->
+                </ng-switch>
+            </div>
+        
